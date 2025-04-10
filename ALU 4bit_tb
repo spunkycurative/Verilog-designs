@@ -1,0 +1,35 @@
+`timescale 1ns/100ps
+module ALU_4bit_bh_tb;
+  reg [3:0] a, b, opcode;
+  wire [3:0] x, y;
+
+  // Instantiate the ALU
+  ALU_4bit_bh alu_dut(x, y, a, b, opcode);
+
+  // Monitor changes
+  initial
+    $monitor("time=%3d \t a=%b \t b=%b \t opcode=%b \t x=%b \t y=%b", $time, a, b, opcode, x, y);
+
+  initial begin
+    // Test various opcodes
+    #10; a = 4'b0101; b = 4'b0000; opcode = 4'b0000; // OR-reduction
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b0001; // AND-reduction
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b0010; // XOR-reduction
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b0011; // AND
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b0100; // OR
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b0101; // XOR
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b0110; // Greater than
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b0111; // Less than
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1000; // Logical NOT
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1001; // Equality
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1010; // Addition
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1011; // Subtraction
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1100; // Multiplication
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1101; // Right shift
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1110; // Left shift
+    #10; a = 4'b0101; b = 4'b1100; opcode = 4'b1111; // Bitwise NOT
+    #10; a = 4'b1111; b = 4'b1111; opcode = 4'b1111; // Bitwise NOT on 1111
+
+    #10 $stop;
+  end
+endmodule
