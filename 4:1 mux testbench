@@ -1,0 +1,22 @@
+`timescale 1ns/100ps
+module mux_4_1_bh_tb;
+  reg [3:0] I;
+  reg [1:0] S;
+  wire Y;
+
+  // Instantiate the MUX
+  mux_4_1_bh dut(Y, I, S);
+
+  initial 
+    $monitor("time = %d \t I=%b \t S=%b \t Y=%b", $time, I, S, Y);
+
+  initial begin
+    I = 4'b0000; S = 2'b00; #10;  // Expect Y = 0
+    I = 4'b0001; S = 2'b00; #10;  // Expect Y = 1
+    I = 4'b0010; S = 2'b10; #10;  // Expect Y = 0
+    I = 4'b0011; S = 2'b00; #10;  // Expect Y = 1
+    //I = 4'b0100; S = 2'b11; #10;  // Expect Y = 0
+    //I = 4'b1000; S = 2'b11; #10;  // Expect Y = 1
+    $stop;
+  end
+endmodule
