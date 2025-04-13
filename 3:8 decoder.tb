@@ -1,0 +1,28 @@
+// Code your testbench here
+// or browse Examples
+`timescale 1ns/100ps
+module decoder_3_8_df2_tb;
+  reg [2:0]I;
+  reg EN;
+  wire [7:0]Y;
+  
+  decoder_3_8_df2 de8_dut(Y,I,EN);
+  initial
+    $monitor("time = %d \t I[2]=%b \t I[1]=%b \t I[0]=%b \t EN=%b \t Y=%b",$time,I[2],I[1],I[0],EN,Y);
+  initial begin
+    I=3'b000; EN=0;
+    #10; I=3'b000 ; EN=1;
+    #10; I=3'b001 ; EN=1;
+    #10; I=3'b010 ; EN=1;
+    #10; I=3'b011 ; EN=1;
+    #10; I=3'b100 ; EN=1;
+    #10; I=3'b101 ; EN=1;
+    #10; I=3'b110 ; EN=1;
+    #10; I=3'b111 ; EN=1;
+    #10; I=3'b010 ; EN=0;
+    #10; I=3'b011 ; EN=0;
+    
+    #10;
+    $stop;
+  end
+endmodule
