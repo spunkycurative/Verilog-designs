@@ -1,0 +1,43 @@
+// Code your testbench here
+// or browse Examples
+`timescale 1ns/100ps
+module comparator_4bit_bh_tb;
+  reg [3:0]a,b;
+  wire eq,gt,sm;
+  
+  comparator_4bit_bh cm4_dut(eq,gt,sm,a,b);
+  
+  initial
+    $monitor("time=%d \t a=%b \t b=%b \t eq=%b \t gt=%b \t sm=%b",$time,a,b,eq,gt,sm);
+  initial begin
+    
+    a=4'b0000;
+    b=4'b0000;
+    
+    #10; a=4'b0000; b=4'b0000;
+    #10; a=4'b0000; b=4'b0001;
+    #10; a=4'b0001; b=4'b0000;
+    #10; a=4'b1010; b=4'b1010;
+    #10; a=4'b1101; b=4'b1111;
+    #10; a=4'b1100; b=4'b1011;
+    
+    #10;
+    $stop;
+  end
+endmodule
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
