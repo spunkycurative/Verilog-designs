@@ -1,0 +1,26 @@
+`timescale 1ns/100ps
+module dlatchasync_bh_tb;
+  reg en, d, rst;
+  wire q;
+  
+  
+  dlatchasync_bh dlat_dut(q, d, en, rst); 
+  
+  initial
+    $monitor("time=%d \t rst=%b \t d=%b \t en=%b \t q=%b", $time, rst, d, en, q);
+  
+  initial begin
+    // Initialize
+    rst = 1; en = 0; d = 0;
+
+    #10 rst = 0;                   
+    #10 d = 1; en = 1;             
+    #10 d = 0;                     
+    #10 en = 0; d = 1;             
+    #10 rst = 1;                   
+    #10 rst = 0; en = 1; d = 1;    
+    #10;
+
+    $stop;
+  end
+endmodule
