@@ -1,0 +1,36 @@
+// Code your testbench here
+// or browse Examples
+`timescale 1ns/100ps
+module dff_bh_tb;
+  reg d,clk;
+  wire q;
+  
+  dff_bh d_dut(q,d,clk);
+  always
+      #5 clk=~clk;
+
+  initial
+    $monitor("time=%d \t clk=%b \t d=%b \t q=%b",$time,clk,d,q);
+  initial 
+    begin
+      clk=0; d=0;
+      
+      #10; d=1;
+      #10; d=0;
+      #10; d=1;
+      #10; d=0;
+      
+      #10;
+      $stop;
+    end
+endmodule
+      
+      
+      
+      
+      
+      
+  
+  
+
+  
