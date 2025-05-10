@@ -1,0 +1,30 @@
+`timescale 1ns/100ps
+module dff_set_bh_tb;
+  reg clk,rst;
+  reg [7:0] d1,d2;
+  wire [7:0] q1,q2;
+  
+  dff_set_bh d8bit_dut(q1,q2,clk,rst,d1,d2);
+  
+  initial 
+    clk=0;
+  always
+    #5 clk=~clk;
+  initial
+    $monitor("time=%d \t d2=%b \t d1=%b \t rst=%b \t clk=%b \t q2=%b \t q1=%b",$time,d2,d1,rst,clk,q2,q1);
+    
+  
+  
+  initial begin
+    rst=1; d1=8'h00; d2=8'h00;
+  
+  #10; rst=0;
+  d1=8'hA1; d2=8'hB2;
+  #10;
+  d1=8'h55; d2=8'h66;
+  #10;
+  rst=1;
+  #10; rst=0;
+  $stop;
+  end
+endmodule
