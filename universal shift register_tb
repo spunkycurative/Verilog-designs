@@ -1,0 +1,76 @@
+`timescale 1ns/100ps
+module univ_shift_5bit_bh_tb;
+  reg [1:0] sel;
+  reg [4:0] pi;
+  reg clk,rst,si;
+  wire [4:0] po;
+  
+  univ_shift_5bit_bh uut(po,pi,sel,clk,rst,si);
+  
+  initial 
+    clk=0;
+  always
+    #5 clk=~clk;
+  
+  initial
+    $monitor("time=%d \t si=%b \t rst=%b \t clk=%b \t sel=%b \t pi=%b \t po=%b",$time,si,rst,clk,sel,pi,po);
+  
+  initial begin
+    rst=1; sel=2'b00; pi=5'b00000; si=0;
+    #10; rst=0;
+    
+    #10; sel=2'b11; pi=5'b10101; 
+    #10; sel=2'b00;
+    
+    #10; sel=2'b10; si=1;
+    #10; sel=2'b10; si=0;
+    
+    #10; sel=2'b01; si=1;
+    #10; sel=2'b01; si=0;
+    
+    #10; sel=2'b00;
+    #10;
+    
+    $stop;
+  end
+endmodule
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
