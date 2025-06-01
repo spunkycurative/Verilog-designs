@@ -1,0 +1,23 @@
+`timescale 1ns/100ps
+module up_counter_4bit_bh_tb;
+  reg clk,rst;
+  wire [3:0]count;
+  
+  up_counter_4bit_bh up_dut(count,clk,rst);
+  
+  always
+    #5 clk=~clk;
+  
+  initial
+    $monitor("time=%d \t rst=%b \t clk=%b \t count=%b ", $time,rst,clk,count);
+  
+  initial begin
+    clk=0;
+    rst=1;
+    #10 rst=0;
+    #90 rst=1;
+    #10 rst=0;
+    #70 $stop;
+ 
+  end
+endmodule
