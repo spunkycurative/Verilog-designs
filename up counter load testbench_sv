@@ -1,0 +1,47 @@
+
+`timescale 1ns/100ps
+module up_counter_load_bh_tb;
+  reg [3:0] data_in;
+  reg clk,rst,load;
+  wire [3:0] count;
+  
+  up_counter_load_bh load_dut(count,clk,load,rst,data_in);
+  
+ 
+  always
+    #5 clk=~clk;
+  initial
+    $monitor("time=%d \t data_in=%b \t rst=%b \t load=%b \t clk=%b \t count=%b",$time,data_in,rst,load,clk,count);
+  
+  initial begin
+    clk=0; rst=1; load=0; data_in=4'b0000;
+    
+    #10; rst=0; 
+    #30; load=1; data_in=4'b1010;
+    #10; load=0;
+    #50; rst=1;
+    #10; rst=0;
+    
+    
+    #10;
+    $stop;
+  end
+endmodule
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
