@@ -1,0 +1,35 @@
+
+`timescale 1ns/100ps
+module counter_up_down_bh_tb;
+  reg [7:0] data_in;
+  reg clk,rst,load,m;
+  wire [7:0] count;
+  
+  counter_up_down_bh comb_dut(count,m,load,clk,rst,data_in);
+  
+  always
+    #5 clk=~clk;
+  initial 
+    $monitor("time=%d \t data_in=%b \t rst=%b \t clk=%b \t load=%b \t m=%b \t count=%b",$time,data_in,rst,clk,load,m,count);
+  
+  initial begin
+    clk=0; rst=1; load=0; m=1; data_in=8'b00000000;
+    #10; rst=0; 
+    #10; load=1; data_in=8'b00000100;
+    
+    #10; load=0; m=1;
+    
+    #50; m=0;
+    
+    #40;
+    rst=1;
+    
+    #10;
+    $stop;
+  end
+endmodule
+    
+    
+
+  
+  
