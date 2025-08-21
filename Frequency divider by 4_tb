@@ -1,0 +1,30 @@
+`timescale 1ns/100ps
+module freq_div_4_bh_tb;
+  reg clk,rst;
+  wire clk_out,clk_div2;
+  
+  freq_div_4_bh uut(clk_out,clk_div2,clk,rst);
+  initial begin
+    $dumpfile("waveform.vcd");
+    $dumpvars(0,freq_div_4_bh_tb);
+  end
+  
+  always
+    #5 clk=~clk;
+  
+  initial
+    $monitor("time=%d \t rst=%b \t clk=%b \t clk_div2=%b \t clk_out=%b",$time,rst,clk,clk_div2,clk_out);
+  
+  initial begin
+    clk=0; rst=1; 
+    #20; rst=0;
+    #200;
+    
+    $finish;
+  end
+endmodule
+    
+    
+    
+    
+    
