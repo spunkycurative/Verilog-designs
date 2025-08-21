@@ -1,0 +1,20 @@
+`timescale 1ns/100ps
+module freq_divider_tb;
+  reg clk, rst;
+  wire clk_out;
+
+  freq_divider_bh dut(clk_out, clk, rst);
+
+  always #10 clk = ~clk; // Clock with 10ns period
+
+  initial begin
+    $monitor("time=%0t \t clk=%b \t rst=%b \t clk_out=%b", 
+             $time, clk, rst, clk_out);
+    
+    clk = 0;
+    rst = 1;      
+    #15 rst = 0;  
+    #200;         
+    $stop;
+  end
+endmodule
