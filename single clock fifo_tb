@@ -1,0 +1,37 @@
+
+`timescale 1ns/100ps
+module single_clock_fifo_bh_tb;
+  reg clk,rst,wr_en,rd_en;
+  reg [7:0] buf_in;
+  wire [7:0] buf_out;
+  wire buf_empty,buf_full;
+
+  wire [6:0] fifo_counter;
+  
+  single_clock_fifo_bh uut(clk,rst,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_counter);
+  
+  always
+    #5 clk=~clk;
+  
+  initial
+    $monitor("time=%d \t clk=%b \t rst=%b \t buf_in=%b \t buf_out=%b \t wr_en=%b \t rd_en=%b \t buf_empty=%b \t buf_full=%b \t fifo_counter=%b" ,$time,clk,rst,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_counter);
+  
+  initial begin
+    clk=0; rst=1; wr_en=0; rd_en=0; buf_in=0;
+    
+    #10; rst=0;
+    #10; wr_en=1; buf_in=8'hA1;
+    #10; buf_in=8'hB2;
+    #10; buf_in=8'hC3;
+    #10; wr_en=0;
+    
+ 
+    
+    #10; rd_en=1; 
+    #10;
+    #10;
+    #10; rd_en=0;
+    #60; 
+    $stop;
+  end
+endmodule
