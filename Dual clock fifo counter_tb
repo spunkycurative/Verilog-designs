@@ -1,0 +1,41 @@
+`timescale 1ns/100ps
+module dual_clock_fifo_bh_tb;
+  reg rst,clk_w,clk_r;
+  reg wr_en,rd_en;
+  reg [7:0] buf_in;
+  wire [7:0]buf_out;
+  wire buf_empty,buf_full;
+  wire [6:0] fifo_counter;
+  
+  dual_clock_fifo_bh dual_dut(rst,clk_w,clk_r,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_counter);
+  
+  always
+    #5 clk_w=~clk_w;
+  always
+    #10 clk_r=~clk_r;
+
+  
+  initial
+    $monitor("time=%d \t rst=%b \t clk_w=%b \t clk_r=%b \t buf_in=%b \t buf_out=%b \t wr_en=%b \t rd_en=%b \t buf_empty=%b \t buf_full=%b \t fifo_counter=%b",$time,rst,clk_w,clk_r,buf_in,buf_out,wr_en,rd_en,buf_empty,buf_full,fifo_counter);
+  
+  initial begin
+    clk_w=0; clk_r=0; rst=1; wr_en=0; rd_en=0; buf_in=0;
+    
+    #10; rst=0;
+    #10; wr_en=1; buf_in=8'hA1;
+    #10;buf_in=8'hB2;
+    #10;buf_in=8'hC3;
+    #10; wr_en=0;
+    
+    
+    #10; rd_en=1;
+    #10;
+    #10;
+    #10;
+    #10;rd_en=0;
+    #10;
+    
+    
+    $stop;
+  end
+endmodule
