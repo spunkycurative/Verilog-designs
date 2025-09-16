@@ -1,0 +1,26 @@
+`timescale 1ns/100ps
+module single_port_ram_v4_tb;
+  reg [7:0]data;
+  reg [5:0] write_addr,read_addr;
+  reg we,clk;
+  wire [7:0] q;
+  
+  single_port_ram_v4 dut(q,data,write_addr,read_addr,we,clk);
+  
+  always
+    #5 clk=~clk;
+  
+  initial
+    $monitor("time=%d \t clk=%b \t we=%b \t data=%b \t write_addr=%b \t read_addr=%b \t q=%b",$time,clk,we,data,write_addr,read_addr,q);
+  
+  initial begin
+    clk=0; we=0; data=0; write_addr=6'd0; read_addr=6'd0;
+    
+    #10; we=1; data=8'hAB; write_addr=21;
+    #10; we=0; read_addr=21;
+    #10;
+    $stop;
+  end
+endmodule
+    
+ 
