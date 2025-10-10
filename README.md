@@ -19,8 +19,7 @@ The goal of this repo is to build a strong foundation in **RTL design, digital e
 
 ### 🔸 Sequential Circuits
 - [D Flip-Flop (Sync)](./D%20flip%20flop%20synchronous.v) | [Testbench](./D%20flip%20flop%20synchronous_tb)  
-- [JK Flip-Flop](./JK%20flip%20flop.v) | [Testbench](./JK%20flip%20flop_tb)  
-- [T Flip-Flop](./T%20flip%20flop.v) | [Testbench](./T%20flip%20flop_tb)  
+- [JK Flip-Flop](./JK%20flip%20flop.v) | [Testbench](./JK%20flip%20flop_tb)   
 - [D Latch Async](./dlatch%20asynchronous.v) | [Testbench](./dlatch_async_tb)  
 - [Up Counter](./up%20counter%20async.v) | [Testbench](./up%20counter%20async_tb)  
 - [Up/Down Counter](./up%20and%20down%20counter.v) | [Testbench](./up%20and%20down%20counter_tb)  
