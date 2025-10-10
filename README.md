@@ -40,10 +40,7 @@ The goal of this repo is to build a strong foundation in **RTL design, digital e
 - [Single Clock FIFO](./single_clock_fifo.v) | [Testbench](./single_clock_fifo_tb)  
 - [Dual Clock FIFO](./Dual%20clock%20fifo.v) | [Testbench](./Dual%20clock%20fifo%20counter_tb)  
 - [Single Port RAM](./single%20port%20ram.v) | [Testbench](./single%20port%20ram_tb)  
-- [Dual Port RAM](./Dual%20port%20ram.v) | [Testbench](./Dual%20port%20ram_tb)  
-- [7-Segment Decoder](./seven%20segment%20decoder.v) | [Testbench](./seven%20segment%20decoder_tb)  
-- [Parity Generator](./parity%20generator.v) | [Testbench](./parity%20generator_tb)  
-- [Parity Checker](./parity%20checker.v) | [Testbench](./parity%20checker_tb)  
+- [Dual Port RAM](./Dual%20port%20ram.v) | [Testbench](./Dual%20port%20ram_tb)    
 
 ---
 
